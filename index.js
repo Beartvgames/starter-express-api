@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const request = require('request');
 const app = express();
-
+const GDPSUrl = process.env.GDPS || "unknown";
 // Configura el directorio donde se encuentran los archivos estáticos (por ejemplo, index.html)
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     const userId = req.query.user;
     if (userId) {
         // Hacer una solicitud POST al otro sitio web
-        const apiUrl = `http://game.gdpsadventure1.x10.mx/tools/bot/userName.php?extID=${userId}`;
+        const apiUrl = `http://${GDPSUrl}/tools/bot/userName.php?extID=${userId}`;
         request.post(apiUrl, (error, response, body) => {
             if (!error && response.statusCode === 200) {
                 // Enviar la respuesta del otro sitio web como respuesta al cliente
