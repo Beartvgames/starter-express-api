@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     const userId = req.query.user;
     if (userId) {
         // Hacer una solicitud POST al otro sitio web
-        const apiUrl = `http://${GDPSUrl}/tools/bot/userName.php?extID=${userId}`;
+        const apiUrl = `http://game.gdpsadventure1.x10.mx/tools/bot/userName.php?extID=${userId}`;
         request.post(apiUrl, (error, response, body) => {
             if (!error && response.statusCode === 200) {
                 // Almacena la respuesta del otro sitio web en la variable res.locals.result
